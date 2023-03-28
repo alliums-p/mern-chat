@@ -8,7 +8,7 @@ export default function Conversations({ conversation, currentUser }) {
   const file_path = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {
-    const friendId = conversation.members.find((m) => m === currentUser._id);
+    const friendId = conversation.members.find((m) => m !== currentUser._id);
     const getUser = async () => {
       try {
         const res = await axios("/users?userId=" + friendId);
@@ -18,7 +18,7 @@ export default function Conversations({ conversation, currentUser }) {
       }
     };
     getUser();
-  }, []);
+  }, [currentUser, conversation]);
   return (
     <div className="conversation">
       <img
