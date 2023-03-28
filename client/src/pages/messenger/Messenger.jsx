@@ -61,6 +61,10 @@ export default function Messenger() {
     }
   };
 
+  useEffect(() => {
+    scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
     <>
       <Topbar />
